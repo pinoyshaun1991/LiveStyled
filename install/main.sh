@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 
 DOCUMENT_ROOT="/var/www/test/public"
-apt-get update
-apt-get install -y apache2 git curl php5-cli php5 php5-intl libapache2-mod-php5 php5-sqlite sqlite3 libsqlite3-dev
+LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+
+apt-get -y update
+apt-get -y upgrade
+apt-get -y autoremove
+apt-get install -y apache2 curl php5.6-cli php5.6 libapache2-mod-php5.6 php5.6-dev php5.6-xdebug php5.6-curl
+
+echo 'xdebug.remote_enable=on
+xdebug.remote_connect_back=on
+xdebug.idekey="vagrant"' >> /etc/php/5.6/cli/conf.d/20-xdebug.ini
+
 echo "
 <VirtualHost *:80>
     ServerName test.local
@@ -12,6 +21,12 @@ echo "
         AllowOverride All
         Order allow,deny
         Allow from all
+
+        RewriteEngine on
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule ^([^/]*)$ index.php?id=\$1
+
     </Directory>
 </VirtualHost>
 " > /etc/apache2/sites-available/test.conf
@@ -20,4 +35,3 @@ a2dissite 000-default
 a2ensite test
 service apache2 restart
 cd /var/www/test
-curl -Ss https://getcomposer.org/installer | php

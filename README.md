@@ -1,8 +1,14 @@
 # Refactor!
 
-Within this repository is a working API, however, there are many issues within the codebase. 
-It's your job to refactor the code as best you see fit! 
+Within this repository is a simple working API, which has the ability to retrieve users from a CSV, however, there are many issues within the codebase. 
+
+It's your job to refactor the code as best you see fit!
+
+You are not excepted to add any additional functionality.
+
 Use this as a chance to demonstrate your ability to write clean and functioning code.
+
+You can either fork this repository or email us your zipped solution (without it's dependencies).
 
 ## Installation
 

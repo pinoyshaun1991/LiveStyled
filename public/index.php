@@ -23,3 +23,12 @@ set_exception_handler(function (\Exception $e) {
 });
 
 $applicationController = new ApplicationController();
+
+$getData = $_GET;
+
+if (isset($getData['id'])) {
+    print json_encode($applicationController->get($getData['id']));
+} else {
+    print json_encode($applicationController->getList());
+}
+

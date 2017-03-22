@@ -18,10 +18,14 @@ class ApplicationController extends AbstractRestfulController
      */
     public function get($id){
         if
-            (($handle = fopen("users.csv", "r")) !== false) {
+            (($handle = fopen("../data/users.csv", "r")) !== false) {
             while (($data = fgetcsv($handle, 1000, ",")) !== false) {
                 if ($data[0] == $id) {
-                    return $data;
+                    return [
+                        'id' => $data[0],
+                        'firstName' => $data[1],
+                        'seconD_name' => $data[2]
+                    ];
                 }
             }
         }
@@ -37,9 +41,13 @@ class ApplicationController extends AbstractRestfulController
         $rows = [];
         if
             (
-                ($handle = fopen("users.csv", "r")) !== false) {
+                ($handle = fopen("../data/users.csv", "r")) !== false) {
             while (($data = fgetcsv($handle, 1000, ",")) !== false) {
-                $rows[$data[0]] = $data;
+                $rows[] = [
+                    'id' => $data[0],
+                    'firstName' => $data[1],
+                    'seconD_name' => $data[2]
+                ];
             }
         }
         return $rows;
