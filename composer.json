@@ -1,0 +1,19 @@
+{
+    "name": "livestyled-dev/test.livestyled",
+    "description": "Refactor! A test for LiveStyled candidates",
+    "type": "PHP",
+    "require": {
+        "php": ">=5.6.*"
+    },
+    "authors": [
+        {
+            "name": "Aman Vivek Ramkumar",
+            "email": "aman.ramkumar@livestyled.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Refactor\\": "src/"
+        }
+    }
+}
