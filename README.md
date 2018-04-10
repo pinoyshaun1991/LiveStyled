@@ -6,9 +6,9 @@ It's your job to refactor the code as best you see fit!
 
 You are not excepted to add any additional functionality.
 
-You are free to use any libraries you wish.
+You are free to use any libraries you wish but we recommend not using any framework to demonstrate your object oriented skills.
 
-Use this as a chance to demonstrate your ability to write clean and functioning code.
+Use this as a chance to demonstrate your ability to write clean object oriented code and respect the REST API standards.
 
 Please email us your zipped solution.
 
