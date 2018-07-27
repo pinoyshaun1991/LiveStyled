@@ -8,7 +8,7 @@ You are not excepted to add any additional functionality.
 
 You are free to use any libraries you wish but we recommend not using any framework to demonstrate your object oriented skills.
 
-Use this as a chance to demonstrate your ability to write clean object oriented code and respect the REST API standards.
+Use this as a chance to demonstrate your ability to write clean object oriented code and respect the REST API standards, use OOP best practices like dependency inversion, abstraction, OOP design patterns, dependency injection etc.
 
 Please email us your zipped solution.
 
