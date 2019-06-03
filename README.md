@@ -4,7 +4,7 @@ Within this repository is a simple and working API, which has the ability to ret
 
 It's your job to refactor the code as best you see fit!
 
-You are not excepted to add any additional functionality.
+You are not excepted to add any additional functionality but you need to work in a test driven manner, it is required to submit the tests with you result.
 
 You are free to use any libraries you wish but we recommend not using any framework to demonstrate your object oriented skills.
 
