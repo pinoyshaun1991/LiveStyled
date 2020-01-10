@@ -1,55 +1,57 @@
 <?php
 namespace Refactor\Application\Controller;
 
-use Refactor\Common\Controller\AbstractRestfulController;
+use Refactor\Common\Controller\RestfulControllerInterface;
 
 
 /**
  * Class ApplicationController
  * @package Refactor\Application\Controller
  */
-class ApplicationController extends AbstractRestfulController
+class ApplicationController implements RestfulControllerInterface
 {
+    private $rows;
+    private $fileSource;
 
-    /**
-     * Get a resource
-     * @param $id
-     * @return array
-     */
-    public function get($id){
-        if
-            (($handle = fopen("../data/users.csv", "r")) !== false) {
-            while (($data = fgetcsv($handle, 1000, ",")) !== false) {
-                if ($data[0] == $id) {
-                    return [
-                        'id' => $data[0],
-                        'firstName' => $data[1],
-                        'seconD_name' => $data[2]
-                    ];
-                }
-            }
-        }
-
-        die('Unable to find user');
+    public function __construct()
+    {
+        $this->rows       = array();
+        $this->fileSource = '../data/users.csv';
     }
 
     /**
      * Get a list of resources
-     * @return mixed
+     *
+     * @param $params
+     * @return array
      */
-    public function getList(){
-        $rows = [];
-        if
-            (
-                ($handle = fopen("../data/users.csv", "r")) !== false) {
+    public function get($params = array())
+    {
+        $found = false;
+
+        if (($handle = fopen($this->fileSource, "r")) !== false) {
             while (($data = fgetcsv($handle, 1000, ",")) !== false) {
-                $rows[] = [
-                    'id' => $data[0],
-                    'firstName' => $data[1],
-                    'seconD_name' => $data[2]
-                ];
+                $this->rows[] = array(
+                    'id'          => $data[0],
+                    'firstName'   => $data[1],
+                    'secondName'  => $data[2]
+                );
+
+                if (isset($params['id'])) {
+                    if ($data[0] == $params['id']) {
+                        $this->rows = array_pop($this->rows);
+                        $found = true;
+
+                        break;
+                    }
+                }
+            }
+
+            if (isset($params['id']) && $found === false) {
+                die('Unable to find user');
             }
         }
-        return $rows;
+
+        return $this->rows;
     }
 }

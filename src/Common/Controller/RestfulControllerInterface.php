@@ -13,11 +13,4 @@ interface RestfulControllerInterface
      * @return array
      */
     public function get($id);
-
-    /**
-     * Get a list of resources
-     * @return mixed
-     */
-    public function getList();
-
 }
